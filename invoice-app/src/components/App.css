@@ -6,3 +6,8 @@
     gap: 0px;
     box-sizing: border-box;
 }
+@media (max-width:720px) {
+    .App {
+        flex-direction: column;
+    }
+}
