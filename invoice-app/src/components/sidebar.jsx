@@ -3,16 +3,14 @@ import './sidebar.css'
 
 
 export function Sidebar () {
-    return (
-    <>  
-    <div className='side-bar'>
+    return ( 
+    <aside className='side-bar'>
         <div>
 
         </div>
         <div>
 
         </div>
-    </div>
-    </>
+    </aside>
     )
 }
