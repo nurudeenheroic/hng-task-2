@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './mainContent.css'
 import filterIcon from '../assets/Path 2.png'
 import plusSign from '../assets/Group 3.png'
-import EmptyDisplay from '../assets/Email campaign_Flatline 2.png';
+import { Empty } from './empty.jsx';
 
 export function MainContent () {
 
@@ -42,12 +42,8 @@ export function MainContent () {
                 </div>
             </div>
             </header>
-            <div className='empty'>
-                <figure>
-        <img src={EmptyDisplay} alt="No invoices to display "/>
-                </figure>
-                <h3>There is nothing here</h3>
-                <p>Create an invoice by clicking the <br /> "New Invoice" button and get started</p>
+            <Empty/>
+            <div className='invoices-container'>
             </div>
         </main>
     )
