@@ -8,11 +8,16 @@ import './sidebar.css'
 export function Sidebar () {
     return ( 
     <aside className='side-bar'>
-        <div>
-
-        </div>
-        <div>
-
+        <figure className='logo-container'>
+                <img src={Logo} alt="logo" className='logo-image' />
+        </figure>
+        <div className='profile-toggle'>
+            <figure className='mode-toggle-container'>
+                <img src={modeToggle} className='mode-toggle' alt="Mode" />
+            </figure>
+            <figure className='profile-image-container'>
+                <img src={invoiceProfile} className='profile-image' alt="Profile" />
+            </figure>
         </div>
     </aside>
     )
