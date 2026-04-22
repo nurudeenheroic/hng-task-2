@@ -4,11 +4,16 @@ import filterIcon from '../assets/Path 2.png'
 import plusSign from '../assets/Group 3.png'
 
 export function Header() {
-    
+    const filterToggleButton = document.querySelector('.filter-button');
+    const filterSelect = document.querySelector('.filter-select');
     function toggleFilter () {
-        const filterSelect = document.querySelector('.filter-select');
         filterSelect.classList.toggle('show-filter');
     }
+    document.addEventListener('click', (e) => {
+    if (!filterToggleButton.contains(e.target) && !filterSelect.contains(e.target)) {
+        filterSelect.classList.remove('show-filter');
+    }
+});
 
     return (
         <header className='main-header'>
