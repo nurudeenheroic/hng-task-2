@@ -6,12 +6,8 @@ import { MainContent } from './mainContent.jsx';
 function App() {
   return (
     <div className="App">
-        <div className="App">
-             <Sidebar/>
-        </div>
-        <div>
-            <MainContent/>
-        </div>
+        <Sidebar/>
+        <MainContent/>
     </div>
   );
 }
