@@ -40,3 +40,43 @@
     border: none;
     border-bottom: 1px dashed #888EB0 ;
 }
+@media (max-width:720px) {
+    .side-bar {
+        width: 100%;
+        height: 85px;
+        flex-direction: row;
+        border-radius: 0px;
+        margin: 0;
+        align-items: center;
+    }
+    .logo-container{
+        width: 90px;
+        height: 100%;
+        border-radius: 0px;
+        margin: 0;
+    }
+    .profile-toggle{
+        flex-direction: row;
+        width: auto;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    
+.mode-toggle-container{
+    display: flex;
+    width: fit-content;
+    height: 60%;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    padding-right: 30px;
+    margin: 0;
+    border: none;
+    border-right: 1px dashed #888EB0 ;
+}
+.mode-toggle-container .mode-toggle{
+    margin: auto;
+    cursor: pointer;
+}
+}
