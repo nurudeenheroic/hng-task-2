@@ -7,7 +7,7 @@
     box-sizing: border-box;
     background-color: #F8F8FB;
 }
-@media (max-width:720px) {
+@media (max-width:767px) {
     .homePage {
         flex-direction: column;
     }

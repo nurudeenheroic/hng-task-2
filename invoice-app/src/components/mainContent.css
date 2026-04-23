@@ -103,7 +103,7 @@
 .plusSign{
     width: 28px;
 }
-@media (max-width:720px) {
+@media (max-width:767px) {
 .main-content{
     padding-left: 5%;
     padding-right: 5%;

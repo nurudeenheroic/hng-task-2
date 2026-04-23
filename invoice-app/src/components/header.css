@@ -98,7 +98,7 @@
 .plusSign{
     width: 28px;
 }
-@media (max-width:720px) {
+@media (max-width:767px) {
 .main-header{
     min-width: 300px;
     width: 100%;
