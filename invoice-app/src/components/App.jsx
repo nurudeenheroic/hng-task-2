@@ -1,14 +1,11 @@
-import { useState } from 'react'
-import './App.css'
-import { Sidebar } from './sidebar.jsx'
-import { MainContent } from './mainContent.jsx';
-
+/* eslint-disable no-unused-vars */
+import { Routes, Route } from "react-router";
+import homePage from "./homePage";
 function App() {
   return (
-    <div className="App">
-        <Sidebar/>
-        <MainContent/>
-    </div>
-  );
+    <Routes>
+      <Route path="/" element={<homePage/>}></Route>
+    </Routes>
+  )
 }
 export default App

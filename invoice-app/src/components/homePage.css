@@ -1,4 +1,4 @@
-.App{
+.homePage{
     display: flex;
     width: 100%;
     height: 100%;
@@ -8,7 +8,7 @@
     background-color: #F8F8FB;
 }
 @media (max-width:720px) {
-    .App {
+    .homePage {
         flex-direction: column;
     }
 }
