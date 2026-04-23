@@ -3,7 +3,7 @@
     margin: 0 auto;
     height: 100%;
     width: 241.34px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
