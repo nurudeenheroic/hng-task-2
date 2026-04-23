@@ -10,5 +10,14 @@
 @media (max-width:767px) {
     .homePage {
         flex-direction: column;
+        min-height: 100vh;
+    }
+}
+
+/* Extra Small Mobile - 300px to 319px */
+@media (max-width: 319px) {
+    .homePage {
+        min-width: 300px;
+        overflow-x: hidden;
     }
 }
