@@ -139,4 +139,7 @@
     align-items: flex-start;
     gap: 35px;
 }
+.preview-button-container{
+    display: none;
+}
 }
