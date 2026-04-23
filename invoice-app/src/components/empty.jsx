@@ -1,7 +1,11 @@
 import './empty.css'
 import EmptyDisplay from '../assets/Email campaign_Flatline 2.png'
 
-export function Empty() {
+export function Empty({ invoiceCount }) {
+    if (invoiceCount > 0) {
+        return null
+    }
+    
     return (
         <div className='empty'>
                     <figure>
