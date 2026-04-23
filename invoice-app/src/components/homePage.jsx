@@ -2,12 +2,12 @@ import './homePage.css'
 import { Sidebar } from './sidebar.jsx'
 import { MainContent } from './mainContent.jsx';
 
-function homePage() {
+function HomePage() {
   return (
-    <div className="App">
+    <div className="homePage">
         <Sidebar/>
         <MainContent/>
     </div>
   );
 }
-export default homePage
+export default HomePage
