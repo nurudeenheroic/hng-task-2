@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Routes, Route } from "react-router";
-import './App.css'
+import { Routes, Route } from 'react-router'
 import HomePage from './homePage.jsx';
 function App() {
   return (
