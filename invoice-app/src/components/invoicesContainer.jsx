@@ -3,7 +3,6 @@ import { statusChange } from './utils/functions.jsx';
 import { invoices } from './utils/variables.jsx';
 
 export function Invoices () {
-
 statusChange();
     return (
         <div className="invoices-container">
