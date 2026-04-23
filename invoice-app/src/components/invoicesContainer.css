@@ -28,6 +28,8 @@
 .invoice-card:hover{
     border: 4px solid #7C5DFA;
     cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 12px rgba(161, 164, 183, 0.35);
 }
 .invoice-id-and-description{
     display: flex;
@@ -105,6 +107,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity 0.2s ease;
+}
+.preview-button:hover {
+    opacity: 0.7;
 }
 .invoice-status p{
     font-size: 13px;
@@ -118,28 +124,101 @@
 @media (max-width:767px) {
     .invoices-container{
         width: 100%;
-        min-width: auto;
+        min-width: 300px;
+        padding: 0 15px 20px 15px;
+        gap: 15px;
     }
     
-.invoice-id-and-description{
-    display: flex;
+.invoice-card {
+    padding: 15px;
+    min-height: 120px;
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
 }
 
-.invoice-id-and-description h2{
+.invoice-id-and-description{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+}
 
-    margin: 0 0 20px 0;
+.invoice-id-and-description h2{
+    margin: 0;
+    font-size: 14px;
+}
+
+.dueDate {
+    font-size: 12px;
+}
+
+.rate {
+    font-size: 15px;
 }
 
 .client-status{
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 35px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
 }
+
+.client-name p {
+    font-size: 14px;
+}
+
+.invoice-status {
+    padding: 10px 15px;
+    min-width: 80px;
+}
+
+.invoice-status p {
+    font-size: 12px;
+}
+
 .preview-button-container{
     display: none;
 }
+}
+
+/* Extra Small Mobile - 300px to 319px */
+@media (max-width: 319px) {
+    .invoices-container {
+        padding: 0 10px 15px 10px;
+        gap: 12px;
+    }
+    
+    .invoice-card {
+        padding: 12px;
+        min-height: 100px;
+    }
+    
+    .invoice-id-and-description h2 {
+        font-size: 13px;
+    }
+    
+    .dueDate {
+        font-size: 11px;
+    }
+    
+    .rate {
+        font-size: 14px;
+    }
+    
+    .client-name p {
+        font-size: 13px;
+    }
+    
+    .invoice-status {
+        padding: 8px 12px;
+        min-width: 70px;
+    }
+    
+    .invoice-status p {
+        font-size: 11px;
+    }
 }

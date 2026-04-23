@@ -1,10 +1,18 @@
 import './invoicesContainer.css'
 import { statusChange } from './utils/functions.jsx';
-import { invoices } from './utils/variables.jsx';
 import { Link } from 'react-router'
+import { useEffect } from 'react'
 
-export function Invoices () {
-statusChange();
+export function Invoices ({ invoices }) {
+    // Apply status styling after component mounts and DOM is ready
+    useEffect(() => {
+        // Small delay to ensure DOM elements are rendered
+        const timer = setTimeout(() => {
+            statusChange();
+        }, 100);
+        
+        return () => clearTimeout(timer);
+    }, [invoices]); // Re-run when invoices change
     return (
         <div className="invoices-container">
             {invoices.map(invoice => (
