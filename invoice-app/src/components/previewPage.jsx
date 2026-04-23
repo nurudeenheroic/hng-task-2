@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router'
 import { useState } from 'react'
-import { invoices } from './utils/variables.jsx'
+import { invoices, updateInvoice, deleteInvoice } from './utils/variables.jsx'
+import { calculateDueDate, handleFormChange, handleItemChange, calculateInvoiceTotal } from './utils/functions.jsx'
 import { Sidebar } from './sidebar.jsx'
 import './previewPage.css'
 import BackLogo from '../assets/Path 2.svg'
@@ -11,6 +12,7 @@ export function PreviewPage() {
   const navigate = useNavigate()
   const [isEditMode, setIsEditMode] = useState(false)
   const [editInvoice, setEditInvoice] = useState(null)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   
   // Find the invoice by ID
   let invoice = invoices.find(inv => inv.id === id)
@@ -50,45 +52,32 @@ export function PreviewPage() {
   }
 
   const handleEditFormChange = (path, value) => {
-    setEditInvoice(prev => {
-      const updatedInvoice = JSON.parse(JSON.stringify(prev || invoice))
-      const keys = path.split('.')
-      let obj = updatedInvoice
-      for (let i = 0; i < keys.length - 1; i++) {
-        obj = obj[keys[i]]
-      }
-      obj[keys[keys.length - 1]] = value
-      return updatedInvoice
-    })
+    setEditInvoice(handleFormChange(editInvoice || invoice, path, value))
   }
 
   const handleItemChange = (index, field, value) => {
-    setEditInvoice(prev => {
-      const updatedInvoice = JSON.parse(JSON.stringify(prev || invoice))
-      updatedInvoice.items[index][field] = value
-      return updatedInvoice
-    })
+    setEditInvoice(prev => ({
+      ...prev,
+      items: handleItemChange(prev?.items || invoice.items, index, field, value)
+    }))
   }
 
   const handlePaymentTermsChange = (value) => {
-    const updatedInvoice = JSON.parse(JSON.stringify(editInvoice || invoice))
-    updatedInvoice.invoiceDetails.paymentTerms = value
+    const updatedInvoice = handleFormChange(editInvoice || invoice, 'invoiceDetails.paymentTerms', value)
     updatedInvoice.invoiceDetails.dueDate = calculateDueDate(updatedInvoice.invoiceDetails.date, value)
     setEditInvoice(updatedInvoice)
   }
 
   const handleInvoiceDateChange = (value) => {
-    const updatedInvoice = JSON.parse(JSON.stringify(editInvoice || invoice))
-    updatedInvoice.invoiceDetails.date = value
+    const updatedInvoice = handleFormChange(editInvoice || invoice, 'invoiceDetails.date', value)
     updatedInvoice.invoiceDetails.dueDate = calculateDueDate(value, updatedInvoice.invoiceDetails.paymentTerms || 'Next 30 days/ 1 month')
     setEditInvoice(updatedInvoice)
   }
 
   const handleSaveChanges = () => {
-    // Find the original invoice and update it
-    const originalIndex = invoices.findIndex(inv => inv.id === id)
-    if (originalIndex !== -1 && editInvoice) {
-      invoices[originalIndex] = JSON.parse(JSON.stringify(editInvoice))
+    // Update the invoice using localStorage function
+    if (editInvoice) {
+      updateInvoice(id, editInvoice)
     }
     setIsEditMode(false)
   }
@@ -96,6 +85,28 @@ export function PreviewPage() {
   const handleCancel = () => {
     setEditInvoice(null)
     setIsEditMode(false)
+  }
+
+  const handleMarkAsPaid = () => {
+    // Update invoice status using localStorage function
+    const updatedInvoice = { ...invoice, status: 'paid' }
+    updateInvoice(id, updatedInvoice)
+    navigate('/')
+  }
+
+  const handleDeleteClick = () => {
+    setShowDeleteConfirm(true)
+  }
+
+  const handleDeleteConfirm = () => {
+    // Delete invoice using localStorage function
+    deleteInvoice(id)
+    setShowDeleteConfirm(false)
+    navigate('/')
+  }
+
+  const handleDeleteCancel = () => {
+    setShowDeleteConfirm(false)
   }
   
   if (!invoice) {
@@ -111,7 +122,7 @@ export function PreviewPage() {
   }
   
   // Calculate total
-  const editTotal = invoice.items.reduce((acc, item) => acc + (item.quantity * item.rate), 0)
+  const editTotal = calculateInvoiceTotal(invoice.items)
 
   return (
     <div className="preview-invoice-page">
@@ -133,12 +144,14 @@ export function PreviewPage() {
             <button className='edit-button' onClick={() => setIsEditMode(true)}>
               Edit
             </button>
-            <button className='delete-button'>
+            <button className='delete-button' onClick={handleDeleteClick}>
               Delete
             </button>
-              <button className='mark-as-paid-button'>
+            {invoice.status !== 'paid' && invoice.status !== 'draft' && (
+              <button className='mark-as-paid-button' onClick={handleMarkAsPaid}>
                 Mark as Paid
               </button>
+            )}
         </div>
       </div>
 
@@ -208,6 +221,24 @@ export function PreviewPage() {
         </div>
       </div>
       </div>
+      
+      {showDeleteConfirm && (
+        <div className="delete-confirm-overlay">
+          <div className="delete-confirm-modal">
+            <h2>Confirm Deletion</h2>
+            <p>Do you want to delete this invoice?</p>
+            <div className="delete-confirm-buttons">
+              <button className="delete-confirm-no" onClick={handleDeleteCancel}>
+                NO
+              </button>
+              <button className="delete-confirm-yes" onClick={handleDeleteConfirm}>
+                YES
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
       <div className={`edit-mode ${isEditMode ? 'active' : ''}`}>
             <div className='edit-form-container'>
             <Sidebar/>
