@@ -1,13 +1,14 @@
 import './invoicesContainer.css'
 import { statusChange } from './utils/functions.jsx';
 import { invoices } from './utils/variables.jsx';
+import { Link } from 'react-router'
 
 export function Invoices () {
 statusChange();
     return (
         <div className="invoices-container">
             {invoices.map(invoice => (
-                <div key={invoice.id}   className="invoice-card">
+                <Link to={`/invoices/${invoice.id}`} key={invoice.id}   className="invoice-card" >
                     <div className="invoice-id-and-description">
                         <h2><span>#</span>{invoice.id}</h2>
                         <p className='dueDate'><span>Due </span>{invoice.invoiceDetails.dueDate}</p>
@@ -25,7 +26,7 @@ statusChange();
                         <button className='preview-button'><img src="../src/assets/Path 5 Copy 4.png" alt="" /></button>
                         </div>
                     </div>
-                </div>
+                </Link>
             ))}
         </div>
     )
