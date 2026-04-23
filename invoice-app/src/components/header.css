@@ -33,11 +33,13 @@
     background-color: transparent;
     border: none;
     position: relative;
+    padding: 0;
+    cursor: pointer;
 }
 .filter-and-newInvoice{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 .filter-select{
     position: absolute;
@@ -85,6 +87,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.new-invoice-button:hover{
+    background-color: #9277FF;
+    cursor: pointer;
 }
 .new2{
     display: none;
