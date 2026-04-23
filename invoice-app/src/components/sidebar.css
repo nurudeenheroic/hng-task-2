@@ -46,15 +46,16 @@
 @media (max-width:767px) {
     .side-bar {
         width: 100%;
-        height: 85px;
+        height: 70px;
         min-height: auto;
         flex-direction: row;
         border-radius: 0px;
         margin: 0;
         align-items: center;
+        padding: 0 15px;
     }
     .logo-container{
-        width: 90px;
+        width: 60px;
         height: 100%;
         border-radius: 0px;
         margin: 0;
@@ -65,6 +66,7 @@
         align-items: center;
         justify-content: center;
         height: 100%;
+        margin-left: auto;
     }
     
 .mode-toggle-container{
@@ -74,7 +76,7 @@
     align-items: center;
     justify-content: center;
     padding: 0;
-    padding-right: 30px;
+    padding-right: 20px;
     margin: 0;
     border: none;
     border-right: 1px dashed #888EB0 ;
@@ -82,5 +84,371 @@
 .mode-toggle-container .mode-toggle{
     margin: auto;
     cursor: pointer;
+    transition: all 0.3s ease;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.mode-toggle:hover {
+    transform: scale(1.1);
+}
+
+.mode-toggle img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.mode-toggle img.dark-mode-active {
+    filter: brightness(1.5) invert(1);
+    transform: rotate(180deg);
+}
+
+/* Sun Round Icon Styles */
+.sun-round {
+    width: 100%;
+    height: 100%;
+    background-color: #FFD700;
+    border-radius: 50%;
+    border: 2px solid #FFA500;
+}
+}
+
+/* Extra Small Mobile - 300px to 319px */
+@media (max-width: 319px) {
+    .side-bar {
+        height: 60px;
+        padding: 0 10px;
+    }
+    .logo-container {
+        width: 50px;
+    }
+    .mode-toggle-container {
+        padding-right: 15px;
+    }
+    
+    .mode-toggle-container .mode-toggle {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .sun-round {
+        border-width: 1px;
+    }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #0C0E16;
+    color: #FFFFFF;
+}
+
+body.dark-mode .homePage {
+    background-color: #0C0E16;
+}
+
+body.dark-mode .side-bar {
+    background-color: #1E2139;
+}
+
+body.dark-mode .main-header {
+    background-color: #0C0E16;
+}
+
+body.dark-mode .invoice-heading {
+    color: #FFFFFF;
+}
+
+body.dark-mode .invoice-declaration {
+    color: #888EB0;
+}
+
+body.dark-mode .filter-label,
+body.dark-mode .filter-label2 {
+    color: #888EB0;
+}
+
+body.dark-mode .filter-select {
+    background-color: #1E2139;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .filter-select li {
+    color: #FFFFFF;
+}
+
+body.dark-mode .new-invoice-button {
+    background-color: #7C5DFA;
+}
+
+body.dark-mode .invoice-card {
+    background-color: #1E2139;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .invoice-card:hover {
+    border-color: #9277FF;
+}
+
+body.dark-mode .invoice-id-and-description h2 {
+    color: #FFFFFF;
+}
+
+body.dark-mode .invoice-id-and-description h2::first-letter {
+    color: #888EB0;
+}
+
+body.dark-mode .dueDate {
+    color: #888EB0;
+}
+
+body.dark-mode .rate {
+    color: #FFFFFF;
+}
+
+body.dark-mode .client-name p {
+    color: #888EB0;
+}
+
+body.dark-mode .invoice-status.paid {
+    background-color: rgba(51, 214, 159, 0.15);
+}
+
+body.dark-mode .invoice-status.paid p {
+    color: #33D69F;
+}
+
+body.dark-mode .invoice-status.pending {
+    background-color: rgba(255, 143, 0, 0.15);
+}
+
+body.dark-mode .invoice-status.pending p {
+    color: #FF8F00;
+}
+
+body.dark-mode .invoice-status.draft {
+    background-color: rgba(55, 59, 83, 0.15);
+}
+
+body.dark-mode .invoice-status.draft p {
+    color: #888EB0;
+}
+
+body.dark-mode .preview-invoice-page {
+    background-color: #0C0E16;
+}
+
+body.dark-mode .invoice-detail {
+    background-color: #0C0E16;
+}
+
+body.dark-mode .back-button {
+    color: #FFFFFF;
+}
+
+body.dark-mode .back-button:hover {
+    color: #7C88B8;
+}
+
+body.dark-mode .invoice-header {
+    background-color: #1E2139;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .status-badge.draft {
+    background-color: #252945;
+    color: #888EB0;
+}
+
+body.dark-mode .status-badge.pending {
+    background-color: rgba(255, 143, 0, 0.15);
+    color: #FF8F00;
+}
+
+body.dark-mode .status-badge.paid {
+    background-color: rgba(51, 214, 159, 0.15);
+    color: #33D69F;
+}
+
+body.dark-mode .invoice-content {
+    background-color: #1E2139;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .first-section h1 {
+    color: #FFFFFF;
+}
+
+body.dark-mode .first-section h1::first-letter {
+    color: #7C88B8;
+}
+
+body.dark-mode .description {
+    color: #7C88B8;
+}
+
+body.dark-mode .invoice-content .label {
+    color: #7C88B8;
+}
+
+body.dark-mode .invoice-content .value {
+    color: #FFFFFF;
+}
+
+body.dark-mode .items-table {
+    background-color: #252945;
+}
+
+body.dark-mode .items-table thead {
+    background-color: #1E2139;
+}
+
+body.dark-mode .items-table th {
+    color: #7C88B8;
+}
+
+body.dark-mode .items-table td {
+    color: #FFFFFF;
+}
+
+body.dark-mode .td-color {
+    color: #7C88B8;
+}
+
+body.dark-mode .invoice-total {
+    background-color: #0C0E16;
+}
+
+body.dark-mode .edit-form-container {
+    background-color: #1E2139;
+}
+
+body.dark-mode .edit-form h1 {
+    color: #FFFFFF;
+}
+
+body.dark-mode .edit-form h1 span {
+    color: #7C88B8;
+}
+
+body.dark-mode .the-form fieldset legend {
+    color: #7C5DFA;
+}
+
+body.dark-mode .the-form fieldset label {
+    color: #7C88B8;
+}
+
+body.dark-mode .the-form input,
+body.dark-mode .the-form select {
+    background-color: #252945;
+    border-color: #373B53;
+    color: #FFFFFF;
+}
+
+body.dark-mode .the-form input:focus,
+body.dark-mode .the-form select:focus {
+    border-color: #7C5DFA;
+    box-shadow: 0 0 0 3px rgba(124, 93, 250, 0.1);
+}
+
+body.dark-mode .edit-items-table {
+    background-color: #252945;
+    border-color: #373B53;
+}
+
+body.dark-mode .edit-items-table thead {
+    background-color: #1E2139;
+}
+
+body.dark-mode .edit-items-table th {
+    color: #7C88B8;
+    border-color: #373B53;
+}
+
+body.dark-mode .edit-items-table td {
+    border-color: #373B53;
+}
+
+body.dark-mode .edit-items-table input {
+    background-color: #0C0E16;
+    border-color: #373B53;
+    color: #FFFFFF;
+}
+
+body.dark-mode .edit-items-table input:focus {
+    border-color: #7C5DFA;
+    box-shadow: 0 0 0 3px rgba(124, 93, 250, 0.1);
+}
+
+body.dark-mode .add-new-item-button {
+    background-color: #252945;
+    color: #7C88B8;
+    border-color: #373B53;
+}
+
+body.dark-mode .add-new-item-button:hover {
+    background-color: #7C5DFA;
+    color: #FFFFFF;
+    border-color: #7C5DFA;
+}
+
+body.dark-mode .cancel-button {
+    background-color: #252945;
+    color: #7C88B8;
+}
+
+body.dark-mode .cancel-button:hover {
+    background-color: #373B53;
+}
+
+body.dark-mode .save-draft-button {
+    background-color: #373B53;
+    color: #7C88B8;
+}
+
+body.dark-mode .save-draft-button:hover {
+    background-color: #4a4a66;
+}
+
+body.dark-mode .delete-confirm-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .delete-confirm-modal {
+    background-color: #1E2139;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .delete-confirm-modal h2 {
+    color: #FFFFFF;
+}
+
+body.dark-mode .delete-confirm-modal p {
+    color: #7C88B8;
+}
+
+body.dark-mode .delete-confirm-no {
+    background-color: #252945;
+    color: #7C88B8;
+}
+
+body.dark-mode .delete-confirm-no:hover {
+    background-color: #373B53;
+}
+
+body.dark-mode .empty {
+    background-color: #0C0E16;
+}
+
+body.dark-mode .empty h3 {
+    color: #FFFFFF;
+}
+
+body.dark-mode .empty p {
+    color: #7C88B8;
 }
