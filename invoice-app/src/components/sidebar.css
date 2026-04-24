@@ -312,7 +312,8 @@ body.dark-mode .items-table th {
 }
 
 body.dark-mode .items-table td {
-    color: #FFFFFF;
+    color: #ffffff;
+    background-color: #1E2139;
 }
 
 body.dark-mode .td-color {
@@ -346,6 +347,7 @@ body.dark-mode .the-form fieldset label {
 body.dark-mode .the-form input,
 body.dark-mode .the-form select {
     background-color: #252945;
+    border-radius: 10px;
     border-color: #373B53;
     color: #FFFFFF;
 }
