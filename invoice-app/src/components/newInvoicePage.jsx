@@ -41,6 +41,11 @@ export function NewInvoicePage() {
     invoiceToSave.status = 'pending'
     invoiceToSave.invoiceDetails.dueDate = calculateDueDate(invoiceToSave.invoiceDetails.date, invoiceToSave.invoiceDetails.paymentTerms)
     addInvoice(invoiceToSave)
+    // Trigger storage event to notify other components
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'invoice-app-data',
+      newValue: localStorage.getItem('invoice-app-data')
+    }))
     navigate('/')
   }
 
@@ -50,6 +55,11 @@ export function NewInvoicePage() {
     invoiceToSave.status = 'draft'
     invoiceToSave.invoiceDetails.dueDate = calculateDueDate(invoiceToSave.invoiceDetails.date, invoiceToSave.invoiceDetails.paymentTerms)
     addInvoice(invoiceToSave)
+    // Trigger storage event to notify other components
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'invoice-app-data',
+      newValue: localStorage.getItem('invoice-app-data')
+    }))
     navigate('/')
   }
 

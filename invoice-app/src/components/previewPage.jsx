@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router'
-import { useState } from 'react'
-import { invoices, updateInvoice, deleteInvoice } from './utils/variables.jsx'
+import { useState, useEffect } from 'react'
+import { updateInvoice, deleteInvoice, getInvoicesData } from './utils/variables.jsx'
 import { calculateDueDate, handleFormChange, handleItemChange, calculateInvoiceTotal } from './utils/functions.jsx'
 import { Sidebar } from './sidebar.jsx'
 import './previewPage.css'
@@ -12,12 +12,21 @@ export function PreviewPage() {
   const navigate = useNavigate()
   const [isEditMode, setIsEditMode] = useState(false)
   const [editInvoice, setEditInvoice] = useState(null)
+  const [currentInvoice, setCurrentInvoice] = useState(null)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   
-  // Find the invoice by ID
-  let invoice = invoices.find(inv => inv.id === id)
+  // Get invoice data dynamically
+  const getInvoice = () => {
+    const invoices = getInvoicesData()
+    return invoices.find(inv => inv.id === id)
+  }
   
-  // Use editInvoice if in edit mode, otherwise use original invoice
+  useEffect(() => {
+    setCurrentInvoice(getInvoice())
+  }, [id])
+  
+  // Use currentInvoice or editInvoice
+  let invoice = currentInvoice
   if (editInvoice) {
     invoice = editInvoice
   }
@@ -78,6 +87,11 @@ export function PreviewPage() {
     // Update the invoice using localStorage function
     if (editInvoice) {
       updateInvoice(id, editInvoice)
+      // Trigger storage event to notify other components
+      window.dispatchEvent(new StorageEvent('storage', {
+        key: 'invoice-app-data',
+        newValue: localStorage.getItem('invoice-app-data')
+      }))
     }
     setIsEditMode(false)
   }
@@ -91,6 +105,11 @@ export function PreviewPage() {
     // Update invoice status using localStorage function
     const updatedInvoice = { ...invoice, status: 'paid' }
     updateInvoice(id, updatedInvoice)
+    // Trigger storage event to notify other components
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'invoice-app-data',
+      newValue: localStorage.getItem('invoice-app-data')
+    }))
     navigate('/')
   }
 
@@ -101,6 +120,11 @@ export function PreviewPage() {
   const handleDeleteConfirm = () => {
     // Delete invoice using localStorage function
     deleteInvoice(id)
+    // Trigger storage event to notify other components
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'invoice-app-data',
+      newValue: localStorage.getItem('invoice-app-data')
+    }))
     setShowDeleteConfirm(false)
     navigate('/')
   }

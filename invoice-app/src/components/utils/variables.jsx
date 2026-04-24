@@ -5,14 +5,8 @@ export const getInvoiceStatusElements = () => document.querySelectorAll('.invoic
 export const getInvoiceStatusContainers = () => document.querySelectorAll('.invoice-status');
 export const getStatusIndicators = () => document.querySelectorAll('.status-indicator');
 
-// Get initial invoices from localStorage
-export let invoices = getInvoices();
-
-// Function to update the invoices array and save to localStorage
-export const updateInvoicesArray = (newInvoices) => {
-    invoices = newInvoices;
-    setInvoices(invoices);
-};
+// Remove mutable state - use functions instead
+export const getInvoicesData = () => getInvoices();
 
 // Export localStorage functions for use in components
 export { addInvoice, updateInvoice, deleteInvoice };

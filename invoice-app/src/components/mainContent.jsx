@@ -2,8 +2,8 @@ import './mainContent.css'
 import { Empty } from './empty.jsx';
 import { Header } from './header.jsx';
 import { Invoices } from './invoicesContainer.jsx'
-import { useState, useMemo, useEffect } from 'react'
-import { invoices, getInvoices } from './utils/variables.jsx'
+import { useState, useMemo, useEffect, useCallback } from 'react'
+import { getInvoicesData, addInvoice, updateInvoice, deleteInvoice } from './utils/variables.jsx'
 
 export function MainContent () {
     const [filterOptions, setFilterOptions] = useState({
@@ -15,10 +15,24 @@ export function MainContent () {
     const [currentInvoices, setCurrentInvoices] = useState([])
 
     // Refresh invoices from localStorage when component mounts
-    useEffect(() => {
-        const freshInvoices = getInvoices()
+    const refreshInvoices = useCallback(() => {
+        const freshInvoices = getInvoicesData()
         setCurrentInvoices(freshInvoices)
     }, [])
+
+    useEffect(() => {
+        refreshInvoices()
+        
+        // Listen for storage changes from other tabs
+        const handleStorageChange = (e) => {
+            if (e.key === 'invoice-app-data') {
+                refreshInvoices()
+            }
+        }
+        
+        window.addEventListener('storage', handleStorageChange)
+        return () => window.removeEventListener('storage', handleStorageChange)
+    }, [refreshInvoices])
 
     const filteredInvoices = useMemo(() => {
         const activeFilters = Object.keys(filterOptions).filter(key => filterOptions[key])
